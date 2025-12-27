@@ -1,0 +1,67 @@
+# config.yaml
+# Feature Engineering 등에 사용되는 하이퍼파라미터를 추가하여 관리할 수 있습니다.
+
+name: project1
+memo: |
+    남겨둘 메모가 있다면 여기에.
+    여러 줄로도 작성 가능
+seed: 2025
+n_gpu: 1
+
+model:
+  type: WideAndDeep  # 또는 MLP
+
+mlp_args:
+  input_size: null         # train.py에서 설정
+  n_hidden_list: [256, 128]
+  output_size: null
+  dropout_p: 0.2
+  batch_norm: true
+
+wideanddeep_args:
+  wide_input_dim: null     # train.py에서 설정
+  deep_input_dim: null
+  deep_hidden_units: [128, 64]
+  num_classes: null
+  dropout_p: 0.1
+  batch_norm: true
+  use_softmax: false
+
+dataset:
+  type: InfoDataset
+  args:
+    in_columns: null
+    out_columns: null
+    data_dir: ../data
+
+dataloader:
+  type: DataLoader
+  args:
+    batch_size: 64
+    shuffle: true
+    num_workers: 0
+    drop_last: true
+
+loss: CrossEntropyLoss
+metrics: [accuracy, f1]
+
+optimizer:
+  type: Adam
+  args:
+    lr: 0.001
+
+lr_scheduler:
+  type: StepLR
+  args:
+    step_size: 2
+    gamma: 0.9
+
+train:
+  epochs: 5
+  print_period: 1
+  save_period: 2
+  save_model_name: "model"
+  save_dir: ../output
+  resume: false
+  resume_path: null
+  tensorboard: true

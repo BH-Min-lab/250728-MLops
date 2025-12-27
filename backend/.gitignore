@@ -1,0 +1,57 @@
+# Python 일반
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 가상환경
+venv/
+env/
+.venv/
+.env/
+
+# 패키지 매니저
+pip-wheel-metadata/
+*.egg-info/
+
+# Pytest cache
+.pytest_cache/
+
+# mypy type 체크 캐시
+.mypy_cache/
+
+# IDE 설정 파일
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS 파일
+.DS_Store
+Thumbs.db
+
+# 로그 파일
+*.log
+
+# SQLite DB (만약 쓰는 경우)
+*.sqlite3
+
+# 환경변수 파일 (중요: 배포 환경에서는 직접 등록)
+.env
+.env.*
+
+# Docker 관련
+docker-compose.override.yml
+**/__pycache__/
+**/*.pyc
+
+# FastAPI 자동 생성 문서 캐시 등
+*.db
+*.sqlite
+
+# 기타 빌드 아티팩트
+build/
+dist/
+*.egg-info/
+
+env.py
+mysql

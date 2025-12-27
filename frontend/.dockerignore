@@ -1,0 +1,17 @@
+# ───────── Node / Frontend ─────────
+node_modules
+dist
+
+# ───────── Python / Backend ────────
+__pycache__
+*.pyc
+
+# ───────── VCS / IDE / Logs ────────
+.git
+*.log
+.vscode
+.idea
+
+# ───────── Secrets / Config ────────
+.env
+
