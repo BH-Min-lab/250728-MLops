@@ -1,0 +1,20 @@
+name: project1
+seed: 2025
+model:
+  type: WideAndDeep
+wideanddeep_args:
+  deep_hidden_units: [128, 64]
+
+dataset:
+  args:
+    data_dir: /opt/airflow/data          # ✔ 절대경로
+    new_onlinesales_path: null           # ✔ 첫 주기는 없음
+    minio_endpoint: "minio:9000"
+    minio_access_key: "admin"
+    minio_secret_key: "password"
+    raw_data_bucket: "raw-data"
+    new_sales_bucket: "new-sales"
+    models_bucket: "ml-artifacts"
+
+train:
+  save_dir: /ml-artifacts

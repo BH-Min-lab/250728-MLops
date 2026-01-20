@@ -48,3 +48,11 @@ Thumbs.db
 # MLflow
 mlruns/
 mlartifacts/
+
+# MLOps compose runtime data (if copied under repo)
+mlops-project-server-dl_airflow_mlflow_compose/minio/
+mlops-project-server-dl_airflow_mlflow_compose/airflow/dags/__pycache__/
+mlops-project-server-dl_airflow_mlflow_compose/airflow_data/
+mlops-project-server-dl_airflow_mlflow_compose/mlflow_data/
+mlops-project-server-dl_airflow_mlflow_compose/minio_artifacts/
+mlops-project-server-dl_airflow_mlflow_compose/attempt=*.log

@@ -25,6 +25,29 @@ E-commerce 플랫폼을 위한 MLOps 기반 상품 추천 시스템입니다. Wi
 ### Infrastructure
 - **Docker** & **Docker Compose**
 
+### MLOps Pipeline (Airflow / MinIO / MLflow)
+- **Airflow**: 학습 파이프라인 오케스트레이션
+- **MinIO**: 데이터/모델 아티팩트 저장 (S3 호환)
+- **MLflow**: 실험 추적 및 모델 아카이빙
+
+#### 구성/포트
+- Airflow Web: 8080
+- MinIO: 9000 (API), 9090 (Console)
+- MLflow: 5000
+
+#### DAG 흐름 요약
+- CSV 원천 데이터 확인 및 MinIO 업로드
+- 데이터 병합/전처리
+- DockerOperator로 학습 컨테이너 실행
+- 모델/아티팩트 저장(MLflow + MinIO)
+
+#### 실행 방법 (학습 파이프라인)
+```bash
+# 학습 파이프라인 실행
+cd mlops-pipeline
+docker-compose up
+```
+
 ## 프로젝트 구조
 
 ```

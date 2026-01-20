@@ -1,0 +1,71 @@
+name: project1
+memo: |
+    남겨둘 메모가 있다면 여기에.
+    여러 줄로도 작성 가능
+seed: 2025
+n_gpu: 1
+
+model:
+  type: WideAndDeep  # 또는 MLP
+
+mlp_args:
+  input_size: null         # train.py에서 설정
+  n_hidden_list: [256, 128]
+  output_size: null
+  dropout_p: 0.2
+  batch_norm: true
+
+wideanddeep_args:
+  wide_input_dim: null     # train.py에서 설정
+  deep_input_dim: null
+  deep_hidden_units: [128, 64]
+  num_classes: null
+  dropout_p: 0.1
+  batch_norm: true
+  use_softmax: false
+
+dataset:
+  type: InfoDataset
+  args:
+    in_columns: null
+    out_columns: null
+    data_dir: /opt/airflow/data
+    new_onlinesales_path: /opt/airflow/data/Onlinesales_new.csv
+    minio_endpoint: "minio:9000"
+    minio_access_key: "admin"
+    minio_secret_key: "password"
+    raw_data_bucket: "raw-data"
+    new_sales_bucket: "new-sales"
+    models_bucket: "models"
+    
+dataloader:
+  type: DataLoader
+  args:
+    batch_size: 64
+    shuffle: true
+    num_workers: 0
+    drop_last: true
+
+loss: CrossEntropyLoss
+metrics: [accuracy, f1]
+
+optimizer:
+  type: Adam
+  args:
+    lr: 0.001
+
+lr_scheduler:
+  type: StepLR
+  args:
+    step_size: 2
+    gamma: 0.9
+
+train:
+  epochs: 5
+  print_period: 1
+  save_period: 100
+  save_model_name: "model"
+  save_dir: /ml-artifacts
+  resume: false
+  resume_path: null
+  tensorboard: true
